@@ -1,10 +1,10 @@
 {
   "name": "shortcut-cli",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Create command line shortcuts",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "shortcut": "bin/shortcut.js"
   },
   "repository": {
     "type": "git",
