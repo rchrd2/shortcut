@@ -1,6 +1,6 @@
 # shortcut
 
-Create command line shortcuts.
+Simple command line shortcuts.
 
 
 ## Install
@@ -9,17 +9,29 @@ Create command line shortcuts.
 npm install -g shortcut-cli
 ```
 
+0 dependencies.
 
 ## Usage
 
 ```
-$ shortcut add example "cd /path/to/example"
+# Add a new shortcut
+$ shortcut add example cd /path/to/example
+
+# Run a shortcut
 $ `shortcut example`
-$ shortcut add example "cd /path/to/updated/example"
+
+# Update a shortcut
+$ shortcut add example cd /path/to/updated/example
+
+# Remove a shortcut
 $ shortcut remove example
-$ shortcut add diskspace "du -hs"
+
+# Add and run another shortcut
+$ shortcut add diskspace du -hs
 $ `shortcut diskspace`
 156k
+
+# List shortcuts
 $ shortcut list
 diskspace: du -hs
 example: cd /path/to/updated/example

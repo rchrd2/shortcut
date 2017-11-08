@@ -90,13 +90,14 @@ function runShortcut(name) {
 /**
  * Lists all the shortcuts
  */
-function listShortcuts() {
+function listShortcuts(indent) {
   var shortcuts = readShortcuts()
   shortcuts.sort(function(a,b) {
     return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);
   });
   shortcuts.forEach(function(row) {
-    console.log(row.name + ': ' + row.value);
+    var space = indent ? '  ' : '';
+    console.log(space + row.name + ': ' + row.value);
   });
 }
 
@@ -109,16 +110,15 @@ function runTest() {
 
 function showHelp() {
   console.log(`Available commands:
-add,remove,list,help,_test
+  add,remove,list,help,_test
 
 Example usage:
-$ shortcut add example "cd /path/to/example"
-$ \`shortcut example\`
-$ shortcut add example "cd /path/to/updated/example"
-$ shortcut remove example
+  $ shortcut add example cd /path/to/example
+  $ \`shortcut example\`
+  $ shortcut remove example
 
 Current shortcuts:`);
-  listShortcuts();
+  listShortcuts(true);
 }
 
 function main() {

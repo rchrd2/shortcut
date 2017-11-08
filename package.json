@@ -1,6 +1,6 @@
 {
   "name": "shortcut-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create command line shortcuts",
   "main": "index.js",
   "bin": {
