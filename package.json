@@ -1,0 +1,24 @@
+{
+  "name": "shortcut-cli",
+  "version": "1.0.0",
+  "description": "Create command line shortcuts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rchrd2/shortcut.git"
+  },
+  "keywords": [
+    "cli",
+    "shortcut",
+    "utility"
+  ],
+  "author": "Richard Caceres",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rchrd2/shortcut/issues"
+  },
+  "homepage": "https://github.com/rchrd2/shortcut#readme"
+}
