@@ -11,42 +11,53 @@ npm install -g shortcut-cli
 
 0 dependencies.
 
+
 ## Usage
 
+Add a new shortcut
 ```
-# Add a new shortcut
-$ shortcut add example cd /path/to/example
+$ shortcut add hello echo Hello, World!
+```
 
-# Run a shortcut
-$ `shortcut example`
+Run a shortcut
+```
+$ shortcut run hello
+```
 
-# Update a shortcut
-$ shortcut add example cd /path/to/updated/example
+Update a shortcut
+```
+$ shortcut add hello echo Hello, Odyssey!
+```
 
-# Remove a shortcut
-$ shortcut remove example
+Remove a shortcut
+```
+$ shortcut remove hello
+```
 
-# Add and run another shortcut
+Add and run another shortcut
+```
 $ shortcut add diskspace du -hs
-$ `shortcut diskspace`
+$ shortcut run diskspace
 156k
+```
 
-# List shortcuts
+List shortcuts
+```
 $ shortcut list
 diskspace: du -hs
-example: cd /path/to/updated/example
+hello: echo Hello, Odyssey!
 ```
 
 
 ## Notes
 
-As far as I can tell, it's not possible for a child process to change the working directory (eg `cd`) of the parent process. Since `cd` is one of my primary use cases, I opted to have the program print the command, which can then be executed with backticks, eg:
+As far as I can tell, it's not possible for a child process to change the working directory (eg `cd`) of the parent process. In order to `cd`, you have to use a command like this:
 
 ```
+shortcut add cd-somewhere cd /path/to/somewhere
 `shortcut cd-somewhere`
 ```
 
-I am still considering having a way to run commands, or possibly running all commands except `cd` commands.
 
 
 ## License

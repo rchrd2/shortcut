@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var exec = require('child_process').exec;
 
 /**
  * Config file is a JSON file with an array of objects
@@ -74,16 +75,28 @@ function readShortcut(name, shortcuts) {
 /**
  * Runs the shortcut in the cli
  * @param string name
+ * @param bool run_exec - should it actually run it
  */
-function runShortcut(name) {
+function runShortcut(name, run_exec) {
   var shortcut = readShortcut(name);
   if (!shortcut) {
     console.log(name + ' does not exist');
     process.exit(1);
   } else {
-    // TODO run shortcut.value;
-    console.log(shortcut.value);
-    process.exit(0);
+    if (run_exec) {
+      var handle = exec(shortcut.value, function(error, stdout, stderr) {
+        if (error !== null) {
+          process.exit(1);
+        } else {
+          process.exit(0);
+        }
+      });
+      handle.stdout.pipe(process.stdout);
+      handle.stderr.pipe(process.stderr);
+    } else {
+      console.log(shortcut.value);
+      process.exit(0);
+    }
   }
 }
 
@@ -110,12 +123,14 @@ function runTest() {
 
 function showHelp() {
   console.log(`Available commands:
-  add,remove,list,help,_test
+  add,remove,run,list,help
 
 Example usage:
-  $ shortcut add example cd /path/to/example
-  $ \`shortcut example\`
-  $ shortcut remove example
+  $ shortcut add example echo Hello World!
+  $ shortcut example
+  echo Hello World!
+  $ shortcut run example
+  Hello World!
 
 Current shortcuts:`);
   listShortcuts(true);
@@ -142,11 +157,13 @@ function main() {
     case undefined:
       showHelp();
       break;
+    case 'run':
+      runShortcut(args[0], true);
+      break;
     default:
-      runShortcut(action);
+      runShortcut(action, false);
       break;
   }
-  process.exit(0);
 }
 
 main();
