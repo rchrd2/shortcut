@@ -104,7 +104,7 @@ function listShortcuts(indent) {
 function runTest() {
   console.log('Creating "test" command"');
   updateShortcut('test', 'echo hi');
-  listShortcuts();
+  listShortcuts(true);
   runShortcut('test');
 }
 
@@ -132,7 +132,7 @@ function main() {
       updateShortcut(args[0], null);
       break;
     case 'list':
-      listShortcuts();
+      listShortcuts(true);
       break;
     case '_test':
       runTest();
